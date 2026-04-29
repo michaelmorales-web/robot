@@ -1,52 +1,41 @@
-class Robot:
-    def __init__(self, nombre, bateria, escudo):
-        self.nombre = nombre
-        self.bateria = bateria
-        self.escudo = escudo
+class robot():
+    def __init__(self):
+        self.__name = ""
+        self.__batery = 100
 
-    def mostrar_estado(self):
-        print(f"{self.nombre} -> Batería: {self.bateria}, Escudo: {self.escudo}")
+    def get_name(self):
+        return self.__name
 
-class RobotAtaque(Robot):
-    def atacar(self, objetivo):
-        if self.bateria >= 10:
-            daño = 15
-            objetivo.escudo -= daño
-            self.bateria -= 10
-            print(f"{self.nombre} ataca a {objetivo.nombre} causando {daño} de daño.")
-        else:
-            print(f"{self.nombre} no tiene suficiente batería para atacar.")
+    def get_batery(self):
+        return self.__batery
 
-class RobotDefensa(Robot):
-    def recargar(self):
-        aumento = 20
-        self.escudo += aumento
-        print(f"{self.nombre} recarga su escudo en {aumento} puntos.")
+    def get_shield(self):
+        return self.__shield
+    
+    def set_batery(self, new_batery):
+        self.__batery = new_batery  
+
+    def set_shield(self, new_shield):
+        self.__shield = new_shield
+
+    def setName(self, new_name):
+        self.__name = new_name
 
 
-robot1 = RobotAtaque("Destructor", 100, 50)
-robot2 = RobotDefensa("Protector", 80, 60)
+class RobotAtaque(robot):
+    def __init__(self):
+        self.__ataque = 30
+    
+    def get_ataque(self):
+        return self.__ataque
 
-robot1.mostrar_estado()
-robot2.mostrar_estado()
 
-print("\n--- Turno de ataque ---")
-robot1.atacar(robot2)
 
-print("\n--- Estado después del ataque ---")
-robot2.mostrar_estado()
-
-print("\n--- Turno de defensa ---")
-robot2.recargar()
-
-print("\n--- Turno de ataque ---")
-robot1.atacar(robot2)
-
-print("\n--- Estado después del ataque ---")
-robot2.mostrar_estado()
-
-print("\n--- Turno de defensa ---")
-robot2.recargar()
-
-print("\n--- Estado final ---")
-robot2.mostrar_estado()
+class RobotDefesa(robot):
+    def __init__(self):
+        self.__shield = 60
+    
+    def get_shield(self):
+        return self.__shield
+    def set_shield(self, new_shield):
+        self.__shield = new_shield
